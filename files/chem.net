@@ -1,0 +1,38 @@
+$ORIGIN chem.net.
+$TTL 86400
+@         IN  SOA  dns.chem.net.  hostmaster.chem.net. (
+              2001062501  ; serial
+              21600       ; refresh after 6 hours
+              3600        ; retry after 1 hour
+              604800      ; expire after 1 week
+              86400 )     ; minimum TTL of 1 day
+;
+;
+          IN  NS     helium.chem.net.
+dns 	  IN  A      192.168.64.2
+;
+;
+hydrogen  IN A 192.168.64.1
+helium    IN A 192.168.64.2
+lithium   IN A 192.168.64.3
+beryllium IN A 192.168.64.4
+boron     IN A 192.168.64.5
+carbon    IN A 192.168.64.6
+nitrogen  IN A 192.168.64.7
+oxygen    IN A 192.168.64.8
+fluorine  IN A 192.168.64.9
+;
+;
+www       IN  CNAME  boron
+ns1		  IN  CNAME  helium
+ns2		  IN  CNAME  lithium
+;
+;
+@         IN  MX     10  carbon.chem.net.
+mail-in   IN  CNAME      carbon
+mail-out  IN  CNAME      carbon
+;
+;
+_ftp._tcp.chem.net. IN      SRV 10    0      21   nitrogen.chem.net.
+;
+;

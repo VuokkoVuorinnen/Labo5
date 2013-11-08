@@ -1,0 +1,21 @@
+$ORIGIN 64.168.192.in-addr.arpa.
+$TTL 86400
+@  IN  SOA  dns.chem.net.  hostmaster.chem.net. (
+       2001062501  ; serial
+       21600       ; refresh after 6 hours
+       3600        ; retry after 1 hour
+       604800      ; expire after 1 week
+       86400 )     ; minimum TTL of 1 day
+;
+@  IN  NS   dns.chem.net.
+;
+1  IN  PTR  hydrogen.chem.net.
+2  IN  PTR  helium.chem.net.
+3  IN  PTR  lithium.chem.net.
+4  IN  PTR  beryllium.chem.net.
+5  IN  PTR  boron.chem.net.
+6  IN  PTR  carbon.chem.net.
+7  IN  PTR  nitrogen.chem.net.
+8  IN  PTR  oxygen.chem.net.
+9  IN  PTR  fluorine.chem.net.
+
