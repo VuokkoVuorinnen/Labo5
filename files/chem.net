@@ -21,6 +21,7 @@ carbon    IN A 192.168.64.6
 nitrogen  IN A 192.168.64.7
 oxygen    IN A 192.168.64.8
 fluorine  IN A 192.168.64.9
+neon	  IN A 192.168.64.10
 ;
 ;
 www       IN  CNAME  boron

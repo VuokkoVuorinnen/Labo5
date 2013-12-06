@@ -18,4 +18,4 @@ $TTL 86400
 7  IN  PTR  nitrogen.chem.net.
 8  IN  PTR  oxygen.chem.net.
 9  IN  PTR  fluorine.chem.net.
-
+10 IN  PTR	neon.chem.net.

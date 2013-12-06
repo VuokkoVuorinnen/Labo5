@@ -54,6 +54,31 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         end
     end
 
+    # Mail Server
+    config.vm.define :carbon do |server|
+        server.vm.box = "centos64"
+        server.vm.box_url = "http://packages.vstone.eu/vagrant-boxes/centos-6.x-64bit-latest.box"
+
+        server.vm.hostname = "carbon#{domain}"
+        server.vm.network :private_network, ip: '192.168.64.6'
+
+        # By sharing the project folder as /etc/puppet, a lot of stuff "just
+        # works": Hiera, modules, files, etc.
+        server.vm.synced_folder ".", "/etc/puppet"
+
+        server.vm.provider :virtualbox do |vb|
+            vb.gui = false
+            vb.name = 'carbon'
+            vb.customize ["modifyvm", :id, '--cpus', 1 ]
+            vb.customize ["modifyvm", :id, '--memory', 512 ]
+            vb.customize ["modifyvm", :id, '--hostonlyadapter2', 'vboxnet2']
+        end
+
+        server.vm.provision :puppet do |puppet|
+            puppet.manifest_file = "site.pp"
+        end
+    end
+
     # Test box for DHCP
     config.vm.define :neon do |client|
         client.vm.box = 'centos64'
