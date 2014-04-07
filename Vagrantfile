@@ -1,4 +1,3 @@
-;askldjf 
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
