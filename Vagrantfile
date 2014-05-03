@@ -9,11 +9,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # DNS Server
   config.vm.define :helium do |server|
-    server.vm.box = 'centos65-x86_64-puppetlabs'
+    server.vm.box = 'centos-65-x86_64-puppetlabs'
     server.vm.box_url = 'http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box'
 
     server.vm.hostname = "helium#{domain}"
-    server.vm.network :private_network, ip: '192.168.64.2'
+    server.vm.network :private_network, ip: '192.168.56.2'
 
     # By sharing the project folder as /etc/puppet, a lot of stuff 'just
     # works': Hiera, modules, files, etc.
@@ -24,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.name = 'helium'
       vb.customize ['modifyvm', :id, '--cpus', 1 ]
       vb.customize ['modifyvm', :id, '--memory', 512 ]
-      vb.customize ['modifyvm', :id, '--hostonlyadapter2', 'vboxnet2']
+      vb.customize ['modifyvm', :id, '--hostonlyadapter2', 'vboxnet1']
     end
 
     server.vm.provision :puppet do |puppet|
@@ -38,7 +38,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     server.vm.box_url = 'http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box'
 
     server.vm.hostname = "beryllium#{domain}"
-    server.vm.network :private_network, ip: '192.168.64.4'
+    server.vm.network :private_network, ip: '192.168.56.4'
     server.vm.synced_folder '.', '/etc/puppet'
 
     server.vm.provider :virtualbox do |vb|
@@ -46,7 +46,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.name = 'beryllium'
       vb.customize ['modifyvm', :id, '--cpus', 1 ]
       vb.customize ['modifyvm', :id, '--memory', 512 ]
-      vb.customize ['modifyvm', :id, '--hostonlyadapter2', 'vboxnet2']
+      vb.customize ['modifyvm', :id, '--hostonlyadapter2', 'vboxnet1']
     end
 
     server.vm.provision :puppet do |puppet|
@@ -69,7 +69,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ['modifyvm', :id, '--memory', 512 ]
       # Mac-address from common.yaml
       vb.customize ['modifyvm', :id, '--macaddress2', '080027708DB3' ]
-      vb.customize ['modifyvm', :id, '--hostonlyadapter2', 'vboxnet2']
+      vb.customize ['modifyvm', :id, '--hostonlyadapter2', 'vboxnet1']
     end
 
     client.vm.provision :puppet do |puppet|

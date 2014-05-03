@@ -9,7 +9,7 @@ node beryllium inherits default {
       'dns.chem.net',
       $dns_reverse_domain,
     ],
-    nameservers  => ['192.168.64.2'],
+    nameservers  => ['192.168.56.2'],
     ntpservers   => ['us.pool.ntp.org'],
     interfaces   => ['eth0'],
   }
@@ -20,10 +20,10 @@ node beryllium inherits default {
     range   => $dhcp_host_range,
     gateway => $dhcp_default_gateway,
   }
-  
+
   dhcp::host {
-    'neon': 
-      mac => $dhcp_hosts[neon][mac], 
+    'neon':
+      mac => $dhcp_hosts[neon][mac],
       ip  => $dhcp_hosts[neon][ip];
   }
 }

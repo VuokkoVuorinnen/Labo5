@@ -1,4 +1,4 @@
-$ORIGIN 64.168.192.in-addr.arpa.
+$ORIGIN 56.168.192.in-addr.arpa.
 $TTL 86400
 @  IN  SOA  dns.chem.net.  hostmaster.chem.net. (
        2001062501  ; serial
