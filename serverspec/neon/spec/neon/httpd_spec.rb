@@ -1,5 +1,9 @@
 require 'spec_helper'
 
+describe command('hostname -f') do
+	it { should return_stdout('neon.chem.net') }
+end
+
 describe package('httpd') do
   it { should be_installed }
 end
