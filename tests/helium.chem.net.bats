@@ -4,7 +4,7 @@
 # Test suite for helium.chem.net, a DNS server
 #
 
-IP=192.168.64.2
+IP=192.168.56.2
 
 @test "my IP address should be ${IP}" {
 result="$(facter ipaddress_eth1)"
@@ -19,7 +19,7 @@ result="$(netstat -lnt | awk '$6 == "LISTEN" && $4 ~ ":22"')"
 [ -n "${result}" ] # output should not be empty
 }
 
-# Install necessary packages: bind and bind-utils (the latter for testing with 
+# Install necessary packages: bind and bind-utils (the latter for testing with
 # the host command)
 @test "package bind should be installed" {
 result="$(rpm -q bind)"
@@ -40,7 +40,7 @@ result="$(rpm -q bind-utils)"
 CONF=/etc/named.conf
 ZONE=chem.net
 ZONE_FILE=/var/named/${ZONE}
-REVERSE_ZONE=64.168.192.in-addr.arpa
+REVERSE_ZONE=56.168.192.in-addr.arpa
 REVERSE_ZONE_FILE=/var/named/${REVERSE_ZONE}
 
 @test "${CONF} should exist and have correct permissions" {
@@ -115,62 +115,62 @@ result="$(service named status | grep '^named.*is running\.\.\.$')"
 @test "Looking up hydrogen should return the correct address" {
 result="$(host hydrogen.${ZONE} ${IP} | grep 'has address')"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "192.168.64.1" ]] 
+[[ "${result}" =~ "192.168.56.1" ]]
 }
 
 
 @test "Looking up helium should return the correct address" {
 result="$(host helium.${ZONE} ${IP} | grep 'has address')"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "192.168.64.2" ]] 
+[[ "${result}" =~ "192.168.56.2" ]]
 }
 
 @test "Looking up lithium should return the correct address" {
 result="$(host lithium.${ZONE} ${IP} | grep 'has address')"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "192.168.64.3" ]] 
+[[ "${result}" =~ "192.168.56.3" ]]
 }
 
 @test "Looking up beryllium should return the correct address" {
 result="$(host beryllium.${ZONE} ${IP} | grep 'has address')"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "192.168.64.4" ]] 
+[[ "${result}" =~ "192.168.56.4" ]]
 }
 
 @test "Looking up boron should return the correct address" {
 result="$(host boron.${ZONE} ${IP} | grep 'has address')"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "192.168.64.5" ]] 
+[[ "${result}" =~ "192.168.56.5" ]]
 }
 
 @test "Looking up carbon should return the correct address" {
 result="$(host carbon.${ZONE} ${IP} | grep 'has address')"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "192.168.64.6" ]] 
+[[ "${result}" =~ "192.168.56.6" ]]
 }
 
 @test "Looking up nitrogen should return the correct address" {
 result="$(host nitrogen.${ZONE} ${IP} | grep 'has address')"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "192.168.64.7" ]] 
+[[ "${result}" =~ "192.168.56.7" ]]
 }
 
 @test "Looking up oxygen should return the correct address" {
 result="$(host oxygen.${ZONE} ${IP} | grep 'has address')"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "192.168.64.8" ]] 
+[[ "${result}" =~ "192.168.56.8" ]]
 }
 
 @test "Looking up fluorine should return the correct address" {
 result="$(host fluorine.${ZONE} ${IP} | grep 'has address')"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "192.168.64.9" ]] 
+[[ "${result}" =~ "192.168.56.9" ]]
 }
 
 @test "Looking up neon should return the correct address" {
 result="$(host neon.${ZONE} ${IP} | grep 'has address')"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "192.168.64.10" ]] 
+[[ "${result}" =~ "192.168.56.10" ]]
 }
 
 @test "Looking up alias ns1 should return the correct host" {
@@ -181,25 +181,25 @@ result="$(host ns1.${ZONE} ${IP} | grep alias)"
 @test "Looking up alias ns2 should return the correct host" {
 result="$(host ns2.${ZONE} ${IP} | grep alias)"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "lithium.${ZONE}" ]] 
+[[ "${result}" =~ "lithium.${ZONE}" ]]
 }
 
 @test "Looking up alias www should return the correct host" {
 result="$(host www.${ZONE} ${IP} | grep alias)"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "boron.${ZONE}" ]] 
+[[ "${result}" =~ "boron.${ZONE}" ]]
 }
 
 @test "Looking up alias mail-in should return the correct host" {
 result="$(host mail-in.${ZONE} ${IP} | grep alias)"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "carbon.${ZONE}" ]] 
+[[ "${result}" =~ "carbon.${ZONE}" ]]
 }
 
 @test "Looking up alias mail-out should return the correct host" {
 result="$(host mail-out.${ZONE} ${IP} | grep alias)"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "carbon.${ZONE}" ]] 
+[[ "${result}" =~ "carbon.${ZONE}" ]]
 }
 
 @test "Looking up domain name should return mail handler and level (10)" {
@@ -211,10 +211,10 @@ result="$(host ${ZONE} ${IP} | grep mail)"
 @test "Looking up service ftp should return the correct host and priority/weight/port (10 0 21)" {
 result="$(host -t SRV _ftp._tcp.${ZONE} ${IP} | grep SRV)"
 [ "$?" -eq 0 ]     # exit status should be 0
-[[ "${result}" =~ "10 0 21 nitrogen.${ZONE}" ]] 
+[[ "${result}" =~ "10 0 21 nitrogen.${ZONE}" ]]
 }
 
-NET_IP=192.168.64
+NET_IP=192.168.56
 
 @test "Looking up ${NET_IP}.1 should return the correct host" {
 result="$(host ${NET_IP}.1 ${IP} | grep pointer)"

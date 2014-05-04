@@ -4,7 +4,7 @@
 # Modified: Tue 15 Oct 2013 11:11:00 pm CEST CEST CEST
 # Author:   Bert Van Vreckem <bert.vanvreckem@gmail.com>
 #
-# 
+#
 
 set -e # abort on nonzero exitstatus
 set -u # abort on unbound variable
@@ -31,7 +31,7 @@ if [ -f "${SCRIPT}" ]; then
     echo Running test suite ${SCRIPT}
     sudo ${BATS} ${SCRIPT}
 else
-    echo "Test suite ${SCRIPT} not found, bailing out" >&2 
+    echo "Test suite ${SCRIPT} not found, bailing out" >&2
     exit 1
 fi
 
