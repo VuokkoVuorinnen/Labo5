@@ -28,3 +28,13 @@ end
 describe port(68) do
 	it { should be_listening.with('udp') }
 end
+
+describe file('/etc/dhcp/dhcpd.hosts') do
+	its(:content) { should match /host neon/ }
+	its(:content) { should match /hardware ethernet   08:00:27:70:8d:b3;/ }
+	its(:content) { should match /fixed-address       192.168.56.10;/ }
+end
+
+describe file('/etc/dhcp/dhcpd.pools') do
+	its(:content) { should match /range 192.168.56.101 192.168.56.254;/ }
+end

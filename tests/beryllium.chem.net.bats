@@ -61,3 +61,27 @@ IP=192.168.56.4
 }
 
 # Test config file correct
+
+@test "/etc/dhcp/dhcpd.hosts contains definition for Neon" {
+	result="$(sudo cat /etc/dhcp/dhcpd.hosts | grep 'option host-name' | grep neon | wc -l)"
+	[ "$?" -eq 0 ]     # exit status should be 0
+	[ "$result" == "1" ]
+}
+
+@test "MAC address of neon should match" {
+	result="$(sudo cat /etc/dhcp/dhcpd.hosts | grep hardware)"
+	[ "$?" -eq 0 ]     # exit status should be 0
+	[ "$result" == "  hardware ethernet   08:00:27:70:8d:b3;" ]
+}
+
+@test "Neon should receive correct IP address" {
+	result="$(sudo cat /etc/dhcp/dhcpd.hosts | grep fixed-address)"
+	[ "$?" -eq 0 ]     # exit status should be 0
+	[ "$result" == "  fixed-address       192.168.56.10;" ]
+}
+
+@test "/etc/dhcp/dhcpd.pools contains pool ranging from 101-254" {
+	result="$(sudo cat /etc/dhcp/dhcpd.pools | grep range)"
+	[ "$?" -eq 0 ]     # exit status should be 0
+	[ "$result" == "    range 192.168.56.101 192.168.56.254;" ]
+}
