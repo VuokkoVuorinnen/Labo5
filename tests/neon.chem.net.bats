@@ -18,3 +18,9 @@ IP=192.168.56.10
 	[ "$?" -eq 0 ]     # exit status should be 0
 	[ -n "${result}" ] # output should not be empty
 }
+
+@test "/etc/resolv.conf should contain correct DNS server" {
+    result="$(cat /etc/resolv.conf | grep 'nameserver 192.168.56.2')"
+    [ "$?" -eq 0 ]     # exit status should be 0
+    [ -n "$result" ]   # output should not be empty
+}

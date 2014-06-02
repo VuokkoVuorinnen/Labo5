@@ -11,3 +11,7 @@ end
 describe port(22) do
   it { should be_listening.with('tcp') }
 end
+
+describe file('/etc/resolv.conf') do
+	its(:content) { should match /nameserver 192.168.56.2/ }
+end

@@ -35,4 +35,12 @@ node helium inherits default {
     ensure => installed,
   }
 
+  # Serverspec dns tests require the nameserver to be set correctly (to localhost)
+  file { "/etc/resolv.conf":
+    owner   => root,
+    group   => root,
+    mode    => 644,
+    content => '/etc/puppet/files/resolv.conf',
+  }
+
 }

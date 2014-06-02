@@ -11,3 +11,20 @@ end
 describe port(22) do
   it { should be_listening.with('tcp') }
 end
+
+describe package('dhcp') do
+	it { should be_installed }
+end
+
+describe service('dhcpd') do
+	it { should be_enabled }
+	it { should be_running }
+end
+
+describe port(67) do
+	it { should be_listening.with('udp') }
+end
+
+describe port(68) do
+	it { should be_listening.with('udp') }
+end
