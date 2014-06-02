@@ -40,7 +40,7 @@ node helium inherits default {
     owner   => root,
     group   => root,
     mode    => 644,
-    content => '/etc/puppet/files/resolv.conf',
+    source  => '/etc/puppet/files/resolv.conf',
   }
 
 }
